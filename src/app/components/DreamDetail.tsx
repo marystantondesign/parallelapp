@@ -169,7 +169,10 @@ export function DreamDetail() {
       </div>
 
       {/* Sticky CTA */}
-      <div className="sticky bottom-0 bg-gradient-to-t from-blue-950 via-blue-950/95 to-transparent px-4 pb-6 pt-8">
+      <div
+        className="sticky bottom-0 bg-gradient-to-t from-blue-950 via-blue-950/95 to-transparent px-4 pt-8"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 24px)" }}
+      >
         <Link
           to={`/dreams/${id}/revisit`}
           className="block w-full py-3.5 text-center bg-white/15 border border-white/30 text-white font-medium text-sm rounded-xl active:bg-white/25"

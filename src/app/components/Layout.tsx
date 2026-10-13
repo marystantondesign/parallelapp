@@ -17,9 +17,38 @@ const p = {
   accountHead: "M9.9969 9.16383C11.8373 9.16383 13.3292 7.6719 13.3292 5.83153C13.3292 3.99115 11.8373 2.49923 9.9969 2.49923C8.15652 2.49923 6.6646 3.99115 6.6646 5.83153C6.6646 7.6719 8.15652 9.16383 9.9969 9.16383Z",
 };
 
+// iOS home-screen apps with a translucent status bar report 100dvh one status-bar
+// height short, leaving a blank band under the layout. A standalone app always
+// fills the screen, so size to the screen there and fall back to 100dvh elsewhere.
+function useAppHeight() {
+  const get = () => {
+    const standalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (navigator as Navigator & { standalone?: boolean }).standalone === true;
+    if (!standalone) return "100dvh";
+    const portrait = window.innerHeight >= window.innerWidth;
+    const screenHeight = portrait
+      ? Math.max(screen.width, screen.height)
+      : Math.min(screen.width, screen.height);
+    return `${Math.max(screenHeight, window.innerHeight)}px`;
+  };
+  const [height, setHeight] = useState(get);
+  useEffect(() => {
+    const update = () => setHeight(get());
+    window.addEventListener("resize", update);
+    window.addEventListener("orientationchange", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      window.removeEventListener("orientationchange", update);
+    };
+  }, []);
+  return height;
+}
+
 export function Layout() {
   const [hasEchoesSessions, setHasEchoesSessions] = useState(false);
   const location = useLocation();
+  const appHeight = useAppHeight();
 
   useEffect(() => {
     const check = () => {
@@ -83,10 +112,10 @@ export function Layout() {
     : "#000";
 
   return (
-    // Use 100dvh (dynamic viewport height) so the layout never overflows on iOS
+    // Fill the viewport exactly (see useAppHeight) so nothing shows below the layout
     <div
       className="w-full flex flex-col overflow-hidden bg-black"
-      style={{ height: "100dvh" }}
+      style={{ height: appHeight }}
     >
       {/* ── Header ──────────────────────────────────────── */}
       {!isFullScreen && location.pathname !== "/settings" && !location.pathname.startsWith("/profile/") && (

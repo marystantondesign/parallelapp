@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
 
 const defaultDreams = [
   {
@@ -75,17 +74,6 @@ export function Dreams() {
 
   return (
     <div>
-      {/* New Dream Button */}
-      <div className="px-4 py-3 bg-t-surface-elevated border-b border-t-border-subtle">
-        <Link
-          to="/dreams/new"
-          className="app-btn-primary flex items-center justify-center gap-2"
-        >
-          <Plus className="w-5 h-5" />
-          <span className="font-medium">New Dream</span>
-        </Link>
-      </div>
-
       {/* Dreams List */}
       <div className="divide-y divide-t-border-subtle">
         {dreams.map((dream) => (

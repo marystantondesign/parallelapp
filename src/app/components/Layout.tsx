@@ -1,5 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Outlet, Link, useLocation } from "react-router";
+import { MoreHorizontal, Plus } from "lucide-react";
+import { AppHeader } from "./shared/AppHeader";
 
 const p = {
   bell: "M15.1626 25.5C14.9429 25.8788 14.6274 26.1933 14.2479 26.4119C13.8684 26.6305 13.4381 26.7456 13.0001 26.7456C12.5622 26.7456 12.1319 26.6305 11.7524 26.4119C11.3728 26.1933 11.0574 25.8788 10.8376 25.5M20.5001 9.25C20.5001 7.26088 19.71 5.35322 18.3034 3.9467C16.8969 2.54018 14.9893 1.75 13.0001 1.75C11.011 1.75 9.10336 2.54018 7.69684 3.9467C6.29031 5.35322 5.50014 7.26088 5.50014 9.25C5.50014 18 1.75014 20.5 1.75014 20.5H24.2501C24.2501 20.5 20.5001 18 20.5001 9.25Z",
@@ -63,8 +65,6 @@ export function Layout() {
   const isHome = location.pathname === "/";
   const isEchoesIntro = location.pathname === "/echoes";
   const isEchoesLog = location.pathname === "/echoes/log";
-  const showMoreButton = location.pathname === "/twins";
-  const showChatsButton = location.pathname === "/discover";
 
   const isDreamDetailRoute =
     location.pathname.startsWith("/dreams/") &&
@@ -80,18 +80,64 @@ export function Layout() {
     isDreamDetailRoute ||
     (location.pathname.includes("/revisit") && !location.pathname.endsWith("/revisit"));
 
-  const getHeaderTitle = () => {
-    if (location.pathname === "/twins" || location.pathname.startsWith("/chat") || location.pathname.startsWith("/profile")) return "Twin Chats";
-    if (location.pathname === "/discover") return "Twins";
-    if (location.pathname.startsWith("/dreams")) return "Dreams";
-    if (location.pathname.startsWith("/echoes")) return "Echoes";
-    if (location.pathname === "/settings/profile") return "Profile";
-    if (location.pathname === "/settings/account") return "Account";
-    if (location.pathname === "/settings/profile/vibe") return "Choose Vibe";
-    if (location.pathname === "/settings") return "";
-    if (location.pathname === "/insights") return "Insights";
-    if (location.pathname === "/account") return "Account";
-    return "Parallel";
+  const renderHeader = () => {
+    const path = location.pathname;
+    if (isHome) {
+      return (
+        <AppHeader
+          title={<p className="font-['Idiqlat:Regular',serif] text-[38px] leading-[28px] tracking-[-0.44px] whitespace-nowrap">Parallel</p>}
+          right={
+            <svg fill="none" height="24" viewBox="0 0 26 28.5" width="22" aria-label="Notifications" className="text-t-text-primary">
+              <path d={p.bell} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" />
+            </svg>
+          }
+        />
+      );
+    }
+    if (isEchoesIntro) {
+      return (
+        <AppHeader
+          variant="dark"
+          title="Echoes"
+          right={hasEchoesSessions
+            ? <Link to="/echoes/log" className="text-white/60 text-sm active:text-white">Log</Link>
+            : <span className="text-zinc-600 text-sm">Log</span>}
+        />
+      );
+    }
+    if (isEchoesLog) {
+      return <AppHeader title="Echoes Log" right={<Link to="/echoes" className="text-t-link text-sm">New</Link>} />;
+    }
+    if (path === "/twins") {
+      return (
+        <AppHeader
+          title="Twins"
+          right={<Link to="/discover" aria-label="Discover twins" className="text-t-text-primary"><MoreHorizontal className="w-6 h-6" /></Link>}
+        />
+      );
+    }
+    if (path === "/discover") {
+      return <AppHeader title="Discover" right={<Link to="/twins" className="text-t-link text-sm">Chats</Link>} />;
+    }
+    if (path === "/dreams") {
+      return (
+        <AppHeader
+          title="Dreams"
+          right={<Link to="/dreams/new" aria-label="New dream" className="text-t-text-primary"><Plus className="w-6 h-6" /></Link>}
+        />
+      );
+    }
+    const titles: Record<string, string> = {
+      "/settings": "Profile",
+      "/settings/profile": "Profile",
+      "/settings/account": "Account",
+      "/settings/profile/vibe": "Choose Vibe",
+      "/insights": "Insights",
+      "/account": "Account",
+      "/dreams/new": "Dreams",
+      "/echoes/session": "Echoes",
+    };
+    return <AppHeader title={titles[path] ?? "Parallel"} />;
   };
 
   const isNavActive = (path: string) => {
@@ -118,73 +164,7 @@ export function Layout() {
       style={{ height: appHeight }}
     >
       {/* ── Header ──────────────────────────────────────── */}
-      {!isFullScreen && location.pathname !== "/settings" && !location.pathname.startsWith("/profile/") && (
-        isHome ? (
-          <header
-            className="bg-t-header-bg flex-none flex items-center px-4 justify-between"
-            style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 14px)", paddingBottom: "14px" }}
-          >
-            <Link to="/settings/profile" className="relative rounded-full shrink-0 size-[30px] overflow-hidden bg-t-avatar-bg flex items-center justify-center">
-              {(() => {
-                const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
-                return profile.photoUrl
-                  ? <img src={profile.photoUrl} alt="avatar" className="w-full h-full object-cover" />
-                  : <svg fill="none" viewBox="0 0 20 20" width="18" height="18">
-                      <path d={p.accountBody} stroke="var(--t-avatar-text)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-                      <path d={p.accountHead} stroke="var(--t-avatar-text)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-                    </svg>;
-              })()}
-            </Link>
-            <p className="font-['Idiqlat:Regular',serif] text-[38px] leading-[28px] tracking-[-0.44px] text-t-header-text whitespace-nowrap shrink-0">Parallel</p>
-            <div className="relative shrink-0 size-[30px] flex items-center justify-center">
-              <svg fill="none" height="24" viewBox="0 0 26 28.5" width="22">
-                <path d={p.bell} stroke="var(--t-header-text)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" />
-              </svg>
-            </div>
-          </header>
-        ) : isEchoesIntro ? (
-          <header
-            className="bg-zinc-900 border-b border-white/10 px-4 flex items-center justify-between flex-none"
-            style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 12px)", paddingBottom: "12px" }}
-          >
-            <div className="w-10" />
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-zinc-700" />
-              <h1 className="text-lg text-white">Echoes</h1>
-              <span className="text-xs bg-white/10 text-white/50 px-2 py-0.5 rounded-full">Beta</span>
-            </div>
-            {hasEchoesSessions ? (
-              <Link to="/echoes/log" className="text-white/60 text-sm active:text-white">Log</Link>
-            ) : (
-              <span className="text-zinc-600 text-sm">Log</span>
-            )}
-          </header>
-        ) : isEchoesLog ? (
-          <header
-            className="bg-t-surface border-b border-t-border-subtle px-4 flex items-center justify-between flex-none"
-            style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 12px)", paddingBottom: "12px" }}
-          >
-            <div className="w-10" />
-            <h1 className="text-lg text-t-text-primary">Echoes Log</h1>
-            <Link to="/echoes" className="text-t-link text-sm">New</Link>
-          </header>
-        ) : (
-          <header
-            className="bg-t-surface border-b border-t-border-subtle px-4 flex items-center justify-between flex-none"
-            style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 12px)", paddingBottom: "12px" }}
-          >
-            <div className="w-10" />
-            <h1 className="text-lg text-t-text-primary">{getHeaderTitle()}</h1>
-            {showMoreButton ? (
-              <Link to="/discover" className="text-t-link text-sm">More</Link>
-            ) : showChatsButton ? (
-              <Link to="/twins" className="text-t-link text-sm">Chats</Link>
-            ) : (
-              <div className="w-10" />
-            )}
-          </header>
-        )
-      )}
+      {!isFullScreen && !location.pathname.startsWith("/profile/") && renderHeader()}
 
       {/* For full-screen routes: a colored cap behind the real status bar */}
       {isFullScreen && (

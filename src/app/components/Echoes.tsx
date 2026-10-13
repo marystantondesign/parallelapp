@@ -38,6 +38,7 @@ export function Echoes() {
 
       {/* Introduction */}
       <div className="mb-8">
+        <span className="inline-block text-xs bg-white/10 text-white/50 px-2 py-0.5 rounded-full mb-3">Beta</span>
         <p className="text-white/70 text-sm leading-relaxed mb-3">
           Echoes is an experimental feature currently in beta, available to select users.
         </p>

@@ -33,16 +33,11 @@ export default defineConfig({
         } else {
           html = html.replace('</head>', '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />\n</head>');
         }
-        // Inject PWA meta + icon + manifest tags before </head>
+        // Inject iOS standalone meta before </head> (icons + manifest live in index.html)
         html = html.replace(
           '</head>',
           `<meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Parallel" />
-<meta name="theme-color" content="#1E1714" />
-<link rel="icon" href="/icon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/icon.svg" />
-<link rel="manifest" href="/manifest.json" />
 </head>`
         );
         return html;

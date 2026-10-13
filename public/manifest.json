@@ -1,0 +1,18 @@
+{
+  "name": "Parallel",
+  "short_name": "Parallel",
+  "description": "Cross-continuum communication",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1E1714",
+  "background_color": "#1E1714",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

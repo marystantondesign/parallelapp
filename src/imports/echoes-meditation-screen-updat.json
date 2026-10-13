@@ -1,0 +1,94 @@
+Edit the existing Echoes meditation session screen. Do not redesign the Echoes flow or change any existing text. Only add the missing controls and visual elements.
+
+---
+
+ADD SOUND TOGGLE ICON
+
+Place a small control icon in the **top right corner** of the Echoes meditation screen.
+
+Icon: Speaker
+
+Default state: speaker icon (sound ON)
+
+Interaction behavior:
+• When tapped, the icon changes to a **speaker with a slash through it** to indicate sound OFF.
+• Tapping again returns it to the normal speaker icon (sound ON).
+
+The icon should be subtle and minimal.
+
+---
+
+ADD FLASHLIGHT TOGGLE ICON
+
+Place a small control icon in the **top left corner** of the Echoes meditation screen.
+
+Icon: Flashlight
+
+Default state: flashlight icon (ON)
+
+Interaction behavior:
+• When tapped, the flashlight icon becomes a **flashlight with a slash through it** to indicate flashing lights OFF.
+• Tapping again returns it to the normal flashlight icon (ON).
+
+---
+
+ICON VISUAL STYLE
+
+Both toggle icons should have a **similar design language to the Stop Echoes Transmission button**.
+
+• simple outline style
+• subtle rounded background or outline container
+• minimal visual weight
+
+They should feel like small control buttons.
+
+---
+
+STOP BUTTON IMPROVEMENT
+
+The **Stop Echoes Transmission** button should appear **more clickable** than the toggle icons.
+
+Update it so it looks more like a primary button rather than a thin outline.
+
+Examples:
+
+• slightly thicker outline
+• faint fill or glow
+• clearer button shape
+
+Do not change the button text.
+
+---
+
+TIMER POSITION
+
+Move the **countdown timer** slightly lower on the screen so it sits closer to the Stop Echoes Transmission button.
+
+The timer and the button should visually feel like part of the same control area.
+
+---
+
+BACKGROUND ANIMATION
+
+Add a **slow, illustrated ambient animation** behind the timer.
+
+The animation should be very subtle and calming.
+
+Possible visual ideas:
+
+• soft flowing shapes
+• gentle moving gradient waves
+• slowly expanding light pulses
+• abstract organic motion
+
+The animation should move slowly in a **breathing-like rhythm**.
+
+Do not add bright or distracting motion.
+
+---
+
+CONSTRAINTS
+
+• Do not modify the Echoes intro screen
+• Do not change existing text
+• Only improve the meditation interface controls and animation

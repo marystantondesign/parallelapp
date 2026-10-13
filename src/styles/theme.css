@@ -1,0 +1,498 @@
+@custom-variant dark (&:is(.dark *));
+
+/* ====================================================
+   PARALLEL APP — VISUAL THEME TOKENS
+   Applied via data-theme attribute on <html>
+   Themes: liminal (default) | lavender | scarlet
+   ==================================================== */
+
+/* Liminal Cream — warm paper, quiet editorial */
+:root,
+html[data-theme="liminal"] {
+  --t-app-bg: #f5f3ef;
+  --t-surface: #faf8f5;
+  --t-surface-elevated: #ffffff;
+  --t-surface-subtle: #edeae3;
+  --t-header-bg: #bedbff;
+  --t-header-text: #101828;
+  --t-nav-bg: #faf8f5;
+  --t-nav-border: #e4dfd6;
+  --t-text-primary: #1e2939;
+  --t-text-secondary: #4a5565;
+  --t-text-tertiary: #6a7282;
+  --t-text-muted: #99a1af;
+  --t-text-placeholder: #b5bcc8;
+  --t-border-subtle: #e4dfd6;
+  --t-border-medium: #cdc8be;
+  --t-btn-bg: #1e2939;
+  --t-btn-text: #ffffff;
+  --t-btn-secondary-bg: #edeae3;
+  --t-btn-secondary-text: #1e2939;
+  --t-avatar-bg: #dbd6cd;
+  --t-avatar-text: #8a8278;
+  --t-thumbnail-bg: #dbd6cd;
+  --t-link: #3b82f6;
+  --t-bubble-sent-bg: #3b82f6;
+  --t-bubble-sent-text: #ffffff;
+  --t-bubble-received-bg: #e4dfd6;
+  --t-bubble-received-text: #1e2939;
+  --t-input-bg: #ece8e2;
+  --t-icon-active: #1e2939;
+  --t-icon-inactive: #99a1af;
+  --t-unread-bg: #3b82f6;
+  --t-unread-text: #ffffff;
+  --t-shadow: rgba(30, 41, 57, 0.08);
+  --t-accent-dreams: #2f4a7a;
+  --t-accent-twins: #a8622f;
+  --t-accent-echoes: #4a4a46;
+}
+
+/* Lavender Dream — dusk, moonlight, soft glow */
+html[data-theme="lavender"] {
+  --t-app-bg: #1a1727;
+  --t-surface: #22203a;
+  --t-surface-elevated: #2c2848;
+  --t-surface-subtle: #161425;
+  --t-header-bg: #2c2848;
+  --t-header-text: #ede9f8;
+  --t-nav-bg: #22203a;
+  --t-nav-border: #3a355c;
+  --t-text-primary: #ede9f8;
+  --t-text-secondary: #b0a8cc;
+  --t-text-tertiary: #8a82a8;
+  --t-text-muted: #675e88;
+  --t-text-placeholder: #524a70;
+  --t-border-subtle: #3a355c;
+  --t-border-medium: #4a4470;
+  --t-btn-bg: #7c6fff;
+  --t-btn-text: #ffffff;
+  --t-btn-secondary-bg: #3a355c;
+  --t-btn-secondary-text: #ede9f8;
+  --t-avatar-bg: #3a355c;
+  --t-avatar-text: #8a82a8;
+  --t-thumbnail-bg: #3a355c;
+  --t-link: #a78bfa;
+  --t-bubble-sent-bg: #7c6fff;
+  --t-bubble-sent-text: #ffffff;
+  --t-bubble-received-bg: #3a355c;
+  --t-bubble-received-text: #ede9f8;
+  --t-input-bg: #161425;
+  --t-icon-active: #ede9f8;
+  --t-icon-inactive: #675e88;
+  --t-unread-bg: #7c6fff;
+  --t-unread-text: #ffffff;
+  --t-shadow: rgba(0, 0, 0, 0.4);
+  --t-accent-dreams: #6fa8e6;
+  --t-accent-twins: #e0955a;
+  --t-accent-echoes: #a8a4b8;
+}
+
+/* Scarlet Beam — theater, velvet, candlelight */
+html[data-theme="scarlet"] {
+  --t-app-bg: #150d0b;
+  --t-surface: #1c1210;
+  --t-surface-elevated: #261814;
+  --t-surface-subtle: #110907;
+  --t-header-bg: #261814;
+  --t-header-text: #f0e4dc;
+  --t-nav-bg: #1c1210;
+  --t-nav-border: #3a1e16;
+  --t-text-primary: #f0e4dc;
+  --t-text-secondary: #c4a898;
+  --t-text-tertiary: #9a7a6e;
+  --t-text-muted: #7a5a50;
+  --t-text-placeholder: #5a3a30;
+  --t-border-subtle: #3a1e16;
+  --t-border-medium: #5a2e20;
+  --t-btn-bg: #8b1a2c;
+  --t-btn-text: #f0e4dc;
+  --t-btn-secondary-bg: #3a1e16;
+  --t-btn-secondary-text: #f0e4dc;
+  --t-avatar-bg: #3a1e16;
+  --t-avatar-text: #9a7a6e;
+  --t-thumbnail-bg: #3a1e16;
+  --t-link: #d87060;
+  --t-bubble-sent-bg: #8b1a2c;
+  --t-bubble-sent-text: #f0e4dc;
+  --t-bubble-received-bg: #3a1e16;
+  --t-bubble-received-text: #f0e4dc;
+  --t-input-bg: #110907;
+  --t-icon-active: #f0e4dc;
+  --t-icon-inactive: #7a5a50;
+  --t-unread-bg: #8b1a2c;
+  --t-unread-text: #f0e4dc;
+  --t-shadow: rgba(0, 0, 0, 0.5);
+  --t-accent-dreams: #5b8fd6;
+  --t-accent-twins: #e0955a;
+  --t-accent-echoes: #a08874;
+}
+
+/* Smooth color transitions when switching themes */
+html {
+  transition: background-color 0.3s ease;
+}
+html * {
+  transition-property: background-color, color, border-color, fill, stroke;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+/* Don't override motion/react animation properties */
+html [data-motion],
+html .motion-safe\:animate-none {
+  transition: none;
+}
+
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  /* App theme tokens → Tailwind utilities */
+  --color-t-app-bg: var(--t-app-bg);
+  --color-t-surface: var(--t-surface);
+  --color-t-surface-elevated: var(--t-surface-elevated);
+  --color-t-surface-subtle: var(--t-surface-subtle);
+  --color-t-header-bg: var(--t-header-bg);
+  --color-t-header-text: var(--t-header-text);
+  --color-t-nav-bg: var(--t-nav-bg);
+  --color-t-nav-border: var(--t-nav-border);
+  --color-t-text-primary: var(--t-text-primary);
+  --color-t-text-secondary: var(--t-text-secondary);
+  --color-t-text-tertiary: var(--t-text-tertiary);
+  --color-t-text-muted: var(--t-text-muted);
+  --color-t-text-placeholder: var(--t-text-placeholder);
+  --color-t-border-subtle: var(--t-border-subtle);
+  --color-t-border-medium: var(--t-border-medium);
+  --color-t-btn-bg: var(--t-btn-bg);
+  --color-t-btn-text: var(--t-btn-text);
+  --color-t-btn-secondary-bg: var(--t-btn-secondary-bg);
+  --color-t-btn-secondary-text: var(--t-btn-secondary-text);
+  --color-t-avatar-bg: var(--t-avatar-bg);
+  --color-t-avatar-text: var(--t-avatar-text);
+  --color-t-thumbnail-bg: var(--t-thumbnail-bg);
+  --color-t-link: var(--t-link);
+  --color-t-bubble-sent-bg: var(--t-bubble-sent-bg);
+  --color-t-bubble-sent-text: var(--t-bubble-sent-text);
+  --color-t-bubble-received-bg: var(--t-bubble-received-bg);
+  --color-t-bubble-received-text: var(--t-bubble-received-text);
+  --color-t-input-bg: var(--t-input-bg);
+  --color-t-icon-active: var(--t-icon-active);
+  --color-t-icon-inactive: var(--t-icon-inactive);
+  --color-t-unread-bg: var(--t-unread-bg);
+  --color-t-unread-text: var(--t-unread-text);
+  /* Existing tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ====================================================
+   PARALLEL APP — SHARED COMPONENT UTILITY CLASSES
+   Use these in JSX instead of repeating long strings.
+   ==================================================== */
+@layer components {
+
+  /* --- Inputs & Textareas --- */
+  .app-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--t-surface-elevated);
+    border: 1px solid var(--t-border-medium);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--t-text-primary);
+    outline: none;
+    transition: border-color 0.15s ease;
+    -webkit-appearance: none;
+  }
+  .app-input::placeholder { color: var(--t-text-placeholder); }
+  .app-input:focus { border-color: var(--t-link); }
+
+  .app-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--t-surface-elevated);
+    border: 1px solid var(--t-border-medium);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--t-text-primary);
+    outline: none;
+    resize: none;
+    transition: border-color 0.15s ease;
+  }
+  .app-textarea::placeholder { color: var(--t-text-placeholder); }
+  .app-textarea:focus { border-color: var(--t-link); }
+
+  /* --- Buttons --- */
+  .app-btn-primary {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background-color: var(--t-btn-bg);
+    color: var(--t-btn-text);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: center;
+    transition: opacity 0.15s ease;
+    cursor: pointer;
+  }
+  .app-btn-primary:active { opacity: 0.75; }
+  .app-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .app-btn-secondary {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background-color: var(--t-surface-subtle);
+    color: var(--t-text-primary);
+    border: 1px solid var(--t-border-subtle);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: center;
+    transition: opacity 0.15s ease;
+    cursor: pointer;
+  }
+  .app-btn-secondary:active { opacity: 0.7; }
+
+  /* --- Subheader (sticky within screens, not the layout header) --- */
+  .app-subheader {
+    background-color: var(--t-surface);
+    border-bottom: 1px solid var(--t-border-subtle);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .app-subheader-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--t-text-primary);
+  }
+  .app-subheader-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    color: var(--t-text-primary);
+    transition: background-color 0.15s ease;
+    flex-shrink: 0;
+  }
+  .app-subheader-back:active { background-color: var(--t-surface-subtle); }
+
+  /* --- Cards --- */
+  .app-card {
+    position: relative;
+    background-color: var(--t-surface-elevated);
+    border-radius: 1rem;
+    border: 1px solid var(--t-border-subtle);
+    padding: 1rem;
+    width: 100%;
+  }
+
+  /* --- Typography helpers --- */
+  .app-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--t-text-muted);
+  }
+  .app-field-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--t-text-secondary);
+    margin-bottom: 0.375rem;
+  }
+  .app-body {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--t-text-secondary);
+  }
+  .app-caption {
+    font-size: 0.75rem;
+    color: var(--t-text-muted);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
